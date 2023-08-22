@@ -1,4 +1,4 @@
-package HomeWork._2023_07_13;
+package homeWork._2023_07_13;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,45 +11,45 @@ public class Handler {
 
     /**
      * метод для вывода всех мужчин с спортивными машинами
-     * @param developers
+     * @param develops
      */
-    public void printWithSportsCars(List<Developer> developers) {
-        developers.stream()
-                .filter(developer -> developer.getGender() == 'M' && developer.getCar().isSportsCar())
-                .forEach(developer -> System.out.println(developer.getFirstName() + " has a sports car"));
+    public void printWithSportsCars(List<Develop> develops) {
+        develops.stream()
+                .filter(develop -> develop.getGender() == 'M' && develop.getCar().isSportsCar())
+                .forEach(develop -> System.out.println(develop.getFirstName() + " has a sports car"));
     }
 
     /**
      * метод группировать по полу все машины. те у мужчин такие то у женщин такие то
-     * @param developers
+     * @param develops
      * @return
      */
-    public Map<Character, List<Car>> groupCarsByGender(List<Developer> developers) {
-        return developers.stream()
-                .map(Developer::getCar)
+    public Map<Character, List<Car>> groupCarsByGender(List<Develop> develops) {
+        return develops.stream()
+                .map(Develop::getCar)
                 .collect(Collectors.groupingBy(car -> car.isSportsCar() ? 'M' : 'F'));
     }
 
     /**
      * Метод для перевода в Map ключ-девелопер со значением - максимальная скорость авто
-     * @param developers
+     * @param develops
      * @return
      */
-    public Map<Developer, Integer> mapDevelopersAndCarSpeed(List<Developer> developers) {
-        return developers.stream()
-                .collect(Collectors.toMap(developer -> developer, developer -> developer.getCar().getMaxSpeed()));
+    public Map<Develop, Integer> mapDevelopersAndCarSpeed(List<Develop> develops) {
+        return develops.stream()
+                .collect(Collectors.toMap(develop -> develop, develop -> develop.getCar().getMaxSpeed()));
     }
 
     /**
      * Метод для записи информации о девелоперах в текстовый файл
-     * @param developers
+     * @param develops
      * @param filename
      */
-    public void writeDevelopersToFile(List<Developer> developers, String filename) {
+    public void writeDevelopersToFile(List<Develop> develops, String filename) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
-            developers.forEach(developer ->
-                    writer.println(developer.getFirstName() + "-[auto: " + developer.getCar().getBrand() +
-                            " ::: salary: " + developer.getSalary() + "]"));
+            develops.forEach(develop ->
+                    writer.println(develop.getFirstName() + "-[auto: " + develop.getCar().getBrand() +
+                            " ::: salary: " + develop.getSalary() + "]"));
         } catch (IOException e) {
             e.printStackTrace();
         }

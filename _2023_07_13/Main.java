@@ -1,11 +1,7 @@
-package HomeWork._2023_07_13;
+package homeWork._2023_07_13;
 
-import com.github.javafaker.Faker;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 /*
 Написать класс машина у которой будут поля цвет, булеан-спортивная или нет, энам марка и инт максимальная скорость
@@ -25,22 +21,26 @@ public class Main {
         Generator generator = new Generator();
         Handler handler = new Handler();
 
-        List<Developer> developers = generator.generateDevelopers(10);//генерация списка девелоперов
+        List<Develop> develops = generator.generateDevelopers(10);
+        for (Develop develop : develops) {
+            System.out.println("Developer: " + develop.getFirstName() + " " + develop.getLastName() +
+                    ", has car: " + develop.getCar().getBrand());
+        }
 
-        handler.printWithSportsCars(developers);// выводим всех мужчин с спортивными машинами
+        handler.printWithSportsCars(develops);
 
-        Map<Character, List<Car>> carsByGender = handler.groupCarsByGender(developers);//группировка машин по полу
+        Map<Character, List<Car>> carsByGender = handler.groupCarsByGender(develops);
         carsByGender.forEach((gender, cars) -> {
                     System.out.println(gender == 'M' ? "M cars:" : "F cars:");
                     cars.forEach(car -> System.out.println(car.getBrand()));
         });
 
-            Map<Developer, Integer> developerCarSpeedMap = handler.mapDevelopersAndCarSpeed(developers);//создаем Map, где ключ - разработчик, значение - максимальная скорость его машины
-            developerCarSpeedMap.forEach((developer, maxSpeed) ->
-                    System.out.println(developer.getFirstName() + ", has car max speed: " + maxSpeed));
+            Map<Develop, Integer> developerCarSpeedMap = handler.mapDevelopersAndCarSpeed(develops);
+            developerCarSpeedMap.forEach((develop, maxSpeed) ->
+                    System.out.println(develop.getFirstName() + ", has car max speed: " + maxSpeed));
 
 
-            handler.writeDevelopersToFile(developers, "developers_info.txt"); //записываем в текстовый файл
+            handler.writeDevelopersToFile(develops, "developers_info.txt");
 
         }
 

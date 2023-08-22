@@ -1,4 +1,4 @@
-package HomeWork._2023_07_13;
+package homeWork._2023_07_13;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +16,7 @@ public class Car {
     private int maxSpeed;
 
     public boolean isSportsCar() {
+
         return isSportsCar;
     }
 

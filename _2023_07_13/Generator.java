@@ -1,11 +1,18 @@
-package HomeWork._2023_07_13;
+package homeWork._2023_07_13;
 
 import com.github.javafaker.Faker;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+@AllArgsConstructor
+@Getter
+@Setter
 
 public class Generator {
     private final Faker faker;
@@ -32,14 +39,14 @@ public class Generator {
      *
      * @return объект класса Developer с случайными значениями
      */
-    public Developer generateDeveloper() {
+    public Develop generateDevelop(){
         String firstName = faker.name().firstName();
         String lastName = faker.name().lastName();
         int age = faker.number().numberBetween(18, 65);
         int salary = faker.number().numberBetween(30000, 100000);
         char gender = faker.bool().bool() ? 'M' : 'F';
         Car car = generateCar();
-        return new Developer(firstName, lastName, age, salary, gender, car);
+        return new Develop(firstName, lastName, age, salary, gender, car);
     }
 
     /**
@@ -48,12 +55,15 @@ public class Generator {
      * @param count количество разработчиков для генерации
      * @return список разработчиков
      */
-    public List<Developer> generateDevelopers(int count) {
-        List<Developer> developers = new ArrayList<>();
-        for (int i = 0; i < count; i++) {
-            developers.add(generateDeveloper());
+    public List<Develop> generateDevelopers(int count) {
+        if(count < 0) {
+            throw new IllegalArgumentException("count cannot be negative");
         }
-        return developers;
+        List<Develop> develops = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            develops.add(generateDevelop());
+        }
+        return develops;
     }
 
     /**

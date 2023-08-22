@@ -1,4 +1,4 @@
-package HomeWork._2023_07_13;
+package homeWork._2023_07_13;
 
 public enum CarBrand {
     TOYOTA,
@@ -10,6 +10,6 @@ public enum CarBrand {
     MERCEDES,
     AUDI,
     NISSAN,
-    CarBrand, SUBARU
+   SUBARU
 
 }
